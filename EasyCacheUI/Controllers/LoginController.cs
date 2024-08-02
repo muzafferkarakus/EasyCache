@@ -31,9 +31,7 @@ namespace EasyCacheUI.Controllers
 				{
 					return RedirectToAction("Index", "MyProfile");
 				}
-				//else lütfen mail adresinizi onaylayın
 			}
-			//kullanıcı adı veya şifre hatalı
 			return View();
 		}
 	}
