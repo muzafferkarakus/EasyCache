@@ -1,4 +1,8 @@
+using BusinessLayer.Abstract;
+using BusinessLayer.Concrate;
+using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrate;
+using DataAccessLayer.EntityFramework;
 using EasyCacheUI.Models;
 using EntityLayer.Concrate;
 
@@ -8,6 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>();
+
+
+builder.Services.AddScoped<ICustomerAccountProcessDal, EfCustomerAccountProcessDal>();
+builder.Services.AddScoped<ICustomerAccountProcessService, CustomerAccountProcessManager>();
+
+builder.Services.AddScoped<ICustomerAccountDal, EfCustomerAccountDal>();
+builder.Services.AddScoped<ICustomerAccountService, CustomerAccountManager>();
 
 var app = builder.Build();
 
